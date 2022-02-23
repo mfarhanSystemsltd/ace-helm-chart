@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ace-deployment
+  namespace: tekton-builds
   labels:
     app: ace
 spec:
@@ -21,7 +22,7 @@ spec:
         ports:
         - containerPort: 7600
       imagePullSecrets:
-          - name: regcred
+          - name: ecr-cred
 
 ---
 
@@ -29,6 +30,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: ace-service
+  namespace: tekton-builds
 spec:
   selector:
     app: ace
